@@ -1,0 +1,112 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f9f9f9; /* Warna latar belakang yang lebih cerah */
+}
+
+.container-fluid {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+}
+
+.sidebar {
+    height: 100%;
+    background: linear-gradient(45deg, #e91e63, #f8bbd0); /* Gradient warna pastel */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    transition: width 0.3s;
+}
+
+.navbar-brand {
+    margin: 0;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    max-width: 50%;
+    height: auto;
+}
+
+.nav-link {
+    color: #fff; /* Warna teks putih */
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    transition: background 0.3s, color 0.3s;
+}
+
+.nav-link i {
+    margin-right: 0.5rem;
+}
+
+.nav-link:hover, .nav-link.active {
+    background: rgba(255, 255, 255, 0.2); /* Efek hover dengan transparansi */
+    color: #fff;
+}
+
+.dropdown-menu {
+    background-color: #e91e63; /* Warna latar belakang pastel untuk dropdown */
+    border: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.dropdown-menu .dropdown-item {
+    padding: 0.5rem 1.5rem;
+    font-size: 0.9rem;
+    color: #fff; /* Warna teks putih */
+    transition: background 0.3s, color 0.3s;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: #c2185b; /* Pastel lebih gelap untuk hover */
+    color: #fff;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 2rem;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin: 2rem;
+    transition: all 0.3s;
+}
+
+.content:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+footer {
+    text-align: center;
+    padding: 1rem 0;
+    background: #e91e63;
+    color: #fff;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: #c2185b;
+}
+.btn-pink {
+    background-color: #e91e63;
+    color: #fff; /* Teks putih */
+    /* Anda juga bisa menambahkan properti lain seperti padding, border, dsb. */
+}
