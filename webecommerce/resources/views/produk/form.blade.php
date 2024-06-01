@@ -73,7 +73,7 @@
                 </div>
 
                 <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                    <button type="submit" class="btn btn-primary">{{ $buttonText }}</button>
+                    <button type="submit" class="btn btn-pink">{{ $buttonText }}</button>
                 </div>
             </div>
            

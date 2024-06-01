@@ -38,11 +38,7 @@
             </div>
         </div>
 
-        @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-                <p>{{ $message }}</p>
-            </div>
-        @endif
+       
 
         <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
             <table class="table table-bordered">
@@ -78,4 +74,9 @@
             </table>
         </div>
     </div>
+    @if ($message = Session::get('success'))
+            <div class="alert alert-success">
+                <p>{{ $message }}</p>
+            </div>
+        @endif
 @endsection

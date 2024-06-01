@@ -35,7 +35,7 @@ class ProdukController extends Controller
         $query->where('nama_produk', 'LIKE', '%' . $request->search . '%');
     }
 
-    $produk = $query->paginate(10);
+    $produk = $query->get();
     $kategori = Kategori::all();
 
     return view('produk.index', compact('produk', 'kategori'));
