@@ -1,42 +1,55 @@
-@extends('layouts.main')
-@section('container')
+@extends('layouts.app')
 
-<div class="container-fluid">
-    
-<div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-    </div>
-    <div class="card-body">
-        <div class="panel-body">
-            <a href="{{route('user.create')}}" class="btn btn-md btn-success mb-3">TAMBAH DATA</a>
+@section('title', 'Daftar User')
+
+@section('content')
+    <div class="my-4">
+        <h1>Daftar User</h1>
+        <a href="{{ route('user.create') }}" class="btn btn-pink mb-3">Tambah User</a>
+        <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Fullname</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>No HP</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @php
+                    $no = 1;
+                @endphp
+                @foreach($user as $user)
+                <tr>
+                    <td>{{ $no++ }}</td>
+                    <td>{{ $user->fullname }}</td>
+                    <td>{{ $user->username }}</td>
+                    <td>{{ $user->email }}</td>
+                    <td>{{ $user->nohp }}</td>
+                    <td>
+                        <a href="{{ route('user.edit', $user->id) }}" class="btn btn-warning btn-sm">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <form action="{{ route('user.destroy', $user->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
         </div>
-        <div class="table-responsive w-100">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                    <th class="text-center">No</th>
-                    <th class="text-center">Nama</th>
-                    <th class="text-center">Email</th>
-                   
-                </thead>
-                <tbody>
-                    @php
-                        $no = 1;
-                    @endphp
-                    @forelse ($users as $data)
-                        <tr>
-                            <td class="text-center">{{ $no++}}</td>
-                            <td class="text-center">{{ $data->name}}</td>
-                            <td class="text-center">{{ $data->email}}</td>
-                            
-                        </tr>
-                    @empty
-                        
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
     </div>
-</div>
-</div>
+    @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
 @endsection

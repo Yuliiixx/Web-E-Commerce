@@ -16,7 +16,7 @@
         <nav class="col-md-3 col-lg-2 d-md-block sidebar">
             <div class="position-sticky">
                 <a class="navbar-brand d-flex align-items-center justify-content-center py-3" href="{{ url('/') }}">
-                    <img src="{{ asset('images/logo.png') }}"  class="logo">
+                    <img src="{{ asset('images/logo.png') }}" class="logo">
                 </a>
                 <ul class="nav flex-column">
                     <li class="nav-item">
@@ -33,11 +33,22 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('produk.index') ? 'active' : '' }}" aria-current="page" href="{{ route('produk.index') }}">
-                            <i class="fas fa-shopping-cart"></i>
+                            <i class="fas fa-box-open"></i>
                             Produk
                         </a>
                     </li>
-                    
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('pesanan.index') ? 'active' : '' }}" aria-current="page" href="{{ route('pesanan.index') }}">
+                            <i class="fas fa-receipt"></i>
+                            Orderan
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('user.index') ? 'active' : '' }}" aria-current="page" href="{{ route('user.index') }}">
+                            <i class="fas fa-users"></i>
+                            User
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <i class="fas fa-sign-out-alt"></i>

@@ -6,6 +6,8 @@
     <title>Login</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}"> <!-- Tautan ke file CSS terpisah -->
+   
 </head>
 <body>
     <div class="container mt-5">
@@ -31,11 +33,12 @@
                                 <label for="password">Password</label>
                                 <input type="password" class="form-control" id="password" name="password" required>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-block">Login</button>
+                            <button type="submit" class="btn btn-pink btn-block">Login</button>
                         </form>
                     </div>
                     <div class="card-footer text-center">
-                        <p>Jika belum memiliki akun, silahkan <a href="{{ route('register') }}">register</a>.</p>
+                        <p>Jika belum memiliki akun, silahkan <a href="{{ route('register') }}"class="pink-link">register</a>.</p>
+                        
                     </div>
                 </div>
             </div>

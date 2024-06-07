@@ -57,6 +57,7 @@ class ProdukController extends Controller
             'nama_produk' => 'required',
             'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'harga' => 'required|numeric',
+            'stock' => 'required|numeric',
             'keterangan' => 'required'
         ]);
 
@@ -68,6 +69,7 @@ class ProdukController extends Controller
             'nama_produk' => $request->nama_produk,
             'gambar' => $imageName,
             'harga' => $request->harga,
+            'stock' => $request->stock,
             'keterangan' => $request->keterangan
         ]);
 
@@ -94,6 +96,7 @@ class ProdukController extends Controller
             'nama_produk' => 'required',
             'gambar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'harga' => 'required|numeric',
+            'stock' => 'required|numeric',
             'keterangan' => 'required'
         ]);
 
@@ -108,6 +111,7 @@ class ProdukController extends Controller
         $produk->id_kategori = $request->id_kategori;
         $produk->nama_produk = $request->nama_produk;
         $produk->harga = $request->harga;
+        $produk->stock = $request->stock;
         $produk->keterangan = $request->keterangan;
 
         $produk->save();

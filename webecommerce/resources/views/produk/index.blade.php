@@ -38,8 +38,6 @@
             </div>
         </div>
 
-       
-
         <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
             <table class="table table-bordered">
                 <tr>
@@ -48,6 +46,7 @@
                     <th>Kategori</th>
                     <th>Gambar</th>
                     <th>Harga</th>
+                    <th>Stock</th>
                     <th>Keterangan</th>
                     <th width="280px">Action</th>
                 </tr>
@@ -59,14 +58,21 @@
                         <td>{{ $p->kategori->nama_kategori }}</td>
                         <td><img src="{{ asset('images/' . $p->gambar) }}" width="100"></td>
                         <td>{{ $p->harga }}</td>
+                        <td>{{ $p->stock }}</td>
                         <td>{{ $p->keterangan }}</td>
                         <td>
-                            <form action="{{ route('produk.destroy', $p->id_produk) }}" method="POST">
-                                <a class="btn btn-info" href="{{ route('produk.show', $p->id_produk) }}">Show</a>
-                                <a class="btn btn-primary" href="{{ route('produk.edit', $p->id_produk) }}">Edit</a>
+                            <form action="{{ route('produk.destroy', $p->id_produk) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus produk ini?');" style="display:inline;">
+                                <a class="btn btn-success btn-sm" href="{{ route('produk.show', $p->id_produk) }}">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <a class="btn btn-primary btn-sm" href="{{ route('produk.edit', $p->id_produk) }}">
+                                    <i class="fas fa-edit"></i>
+                                </a>
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
+                                <button type="submit" class="btn btn-danger btn-sm">
+                                    <i class="fas fa-trash"></i>
+                                </button>
                             </form>
                         </td>
                     </tr>
@@ -75,8 +81,8 @@
         </div>
     </div>
     @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-                <p>{{ $message }}</p>
-            </div>
-        @endif
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+    @endif
 @endsection

@@ -11,7 +11,7 @@
             <input type="text" name="nama_kategori" class="form-control" value="{{ $kategori->nama_kategori }}" required>
         </div>
       
-        <button type="submit" class="btn btn-primary">Update</button>
+        <button type="submit" class="btn btn-pink">Update</button>
     </form>
 </div>
 @endsection

@@ -4,15 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
     public function index()
     {
-        $user = User::latest()->get();
-        return view('user.index', ['user' => $user]);
+        $user = User::all();
+        return view('user.index', compact('user'));
     }
 
     public function create()
@@ -23,118 +22,61 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'fullname' => 'required',
-            'username' => 'required|unique:user',
-            'email' => 'required|email|unique:user',
-            'password' => 'required|min:8',
-            'nohp' => 'required',
+            'fullname' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:user',
+            'email' => 'required|string|email|max:255|unique:user',
+            'password' => 'required|string|min:8|confirmed',
+            'nohp' => 'required|string|max:15',
         ]);
 
-        User::create([
-            'name' => $request->input('fullname'),
-            'username' => $request->input('username'),
-            'email' => $request->input('email'),
-            'password' => Hash::make($request->input('password')),
-            'nohp' => $request->input('nohp'),
+        $user = new User([
+            'fullname' => $request->get('fullname'),
+            'username' => $request->get('username'),
+            'email' => $request->get('email'),
+            'password' => Hash::make($request->get('password')),
+            'nohp' => $request->get('nohp'),
         ]);
 
-        return redirect()->route('user.index')->with('success', 'Data Berhasil di Tambahkan');
+        $user->save();
+
+        return redirect('/user')->with('success', 'User created successfully.');
     }
 
-    public function edit(User $user)
+    public function edit($id)
     {
-        return view('user.edit', ['user' => $user]);
+        $user = User::findOrFail($id);
+        return view('user.edit', compact('user'));
     }
 
-    public function update(Request $request, User $user)
-    {
-        $request->validate([
-            'fullname' => 'required',
-            'username' => 'required|unique:user,username,' . $user->id,
-            'email' => 'required|email|unique:user,email,' . $user->id,
-            'password' => 'nullable|min:8|confirmed',
-            'nohp' => 'required',
-        ]);
-
-        $data = [
-            'name' => $request->input('fullname'),
-            'username' => $request->input('username'),
-            'email' => $request->input('email'),
-            'nohp' => $request->input('nohp'),
-        ];
-
-        if ($request->filled('password')) {
-            $data['password'] = Hash::make($request->input('password'));
-        }
-
-        $user->update($data);
-
-        return redirect()->route('user.index')->with('success', 'Data Berhasil di Ubah');
-    }
-
-    public function destroy(User $user)
-    {
-        $user->delete();
-        return redirect()->route('user.index')->with('success', 'Data Berhasil di Hapus');
-    }
-
-    public function showLoginForm()
-    {
-        return view('auth.login');
-    }
-
-    public function login(Request $request)
-    {
-        $request->validate([
-            'username' => 'required',
-            'password' => 'required',
-        ]);
-
-        $credentials = $request->only('username', 'password');
-
-        if (Auth::attempt($credentials)) {
-            return redirect()->intended('/home');
-        }
-
-        return redirect()->route('auth.login')
-            ->withInput($request->only('username'))
-            ->withErrors(['username' => 'Invalid credentials']);
-    }
-
-    public function logout(Request $request)
-    {
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-        return redirect('/login');
-    }
-
-    public function showRegistrationForm()
-    {
-        return view('auth.register');
-        
-    }
-
-    public function register(Request $request)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'fullname' => 'required|string|max:255',
-            'username' => 'required|string|unique:user',
-            'email' => 'required|email|unique:user',
-            'password' => 'required|string|min:8|confirmed',
-            'nohp' => 'required',
+            'username' => 'required|string|max:255|unique:user,username,'.$id,
+            'email' => 'required|string|email|max:255|unique:user,email,'.$id,
+            'password' => 'nullable|string|min:8|confirmed',
+            'nohp' => 'required|string|max:15',
         ]);
 
-        $user = User::create([
-            'name' => $request->input('fullname'),
-            'username' => $request->input('username'),
-            'email' => $request->input('email'),
-            'password' => Hash::make($request->input('password')),
-            'nohp' => $request->input('nohp'),
-        ]);
+        $user = User::findOrFail($id);
+        $user->fullname = $request->get('fullname');
+        $user->username = $request->get('username');
+        $user->email = $request->get('email');
+        if ($request->get('password')) {
+            $user->password = Hash::make($request->get('password'));
+        }
+        $user->nohp = $request->get('nohp');
 
-        auth()->login($user);
+        $user->save();
 
-        return redirect('/home');
+        return redirect('/user')->with('success', 'User updated successfully.');
+    }
+
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect('/user')->with('success', 'User deleted successfully.');
     }
 }

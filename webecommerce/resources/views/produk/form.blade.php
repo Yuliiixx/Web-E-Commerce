@@ -18,7 +18,7 @@
                 </ul>
             </div>
         @endif
-        <div class="form-responsive" style="max-height: 500px; overflow-y: auto; overflow-x: hidden;">
+        <div class="form-responsive" style="max-height: 480px; overflow-y: auto; overflow-x: hidden;">
         <form action="{{ $action }}" method="POST" enctype="multipart/form-data">
             @csrf
             @if ($method === 'PUT')
@@ -64,6 +64,14 @@
                         <input type="text" name="harga" value="{{ $produk->harga ?? '' }}" class="form-control" placeholder="Harga">
                     </div>
                 </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Stock:</strong>
+                        <input type="text" name="stock" value="{{ $produk->stock ?? '' }}" class="form-control" placeholder="Stock">
+                    </div>
+                </div>
+
 
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
