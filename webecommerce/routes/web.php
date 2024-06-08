@@ -12,22 +12,17 @@ use App\Http\Controllers\AuthController;
 
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 Route::resource('kategori', KategoriController::class);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::resource('produk', ProdukController::class);
 Route::resource('user', UserController::class);
 Route::resource('pesanan', PesananController::class);
+Route::resource('orders', OrderController::class);
+Route::resource('order-details', OrderDetailController::class)->only(['store', 'update', 'destroy']);
 
+Route::get('orders/{id}/pdf', [OrderController::class, 'generatePDF'])->name('orders.generatePDF');
 
-// Route untuk Order
-Route::get('/order', [OrderController::class, 'index'])->name('order.index');
-Route::get('/order/{id}', [OrderController::class, 'show'])->name('order.show');
-
-// Route untuk OrderDetail
-Route::get('/order/{orderId}/detail', [OrderDetailController::class, 'index'])->name('orderDetail.index');
 
 
 // Home route
@@ -49,5 +44,7 @@ Route::post('/register', [AuthController::class, 'register']);
 
 // Logout route
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
 
 

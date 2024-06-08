@@ -11,16 +11,17 @@ class OrderDetail extends Model
         'id_order',
         'id_produk',
         'quantity',
-        'price',
+        'price_per_unit',
+        'subtotal'
     ];
 
     public function order()
     {
-        return $this->belongsTo(Order::class);
+        return $this->belongsTo(Order::class, 'id_order', 'id_order');
     }
 
-    public function produk()
+    public function product()
     {
-        return $this->belongsTo(Produk::class);
+        return $this->belongsTo(Produk::class, 'id_produk', 'id_produk');
     }
 }

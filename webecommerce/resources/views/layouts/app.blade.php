@@ -38,7 +38,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('pesanan.index') ? 'active' : '' }}" aria-current="page" href="{{ route('pesanan.index') }}">
+                        <a class="nav-link {{ request()->routeIs('orders.index') ? 'active' : '' }}" aria-current="page" href="{{ route('orders.index') }}">
                             <i class="fas fa-receipt"></i>
                             Orderan
                         </a>
