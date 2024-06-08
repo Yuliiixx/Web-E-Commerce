@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\User;
+// use PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class OrderController extends Controller
 {
@@ -79,5 +82,12 @@ class OrderController extends Controller
         $order->delete();
 
         return redirect()->route('orders.index')->with('success', 'Order deleted successfully.');
+    }
+    public function generatePDF($id)
+    {
+        $order = Order::with('orderDetails.product', 'user')->findOrFail($id);
+
+        $pdf = PDF::loadView('orders.pdf', compact('order'));
+        return $pdf->download('order_details.pdf');
     }
 }

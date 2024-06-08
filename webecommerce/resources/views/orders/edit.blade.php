@@ -33,7 +33,7 @@
                 </select>
             </div>
 
-            <button type="submit" class="btn btn-primary">Update Status</button>
+            <button type="submit" class="btn btn-pink">Update Status</button>
         </form>
 
         

@@ -3,7 +3,8 @@
 @section('content')
     <div class="container">
         <h2>Orderan Customer</h2>
-        <table class="table">
+        
+          <table class="table">
             <thead>
                 <tr>
                     <th>No</th>
@@ -29,17 +30,12 @@
                             <a href="{{ route('orders.edit', $order->id_order) }}" class="btn btn-info btn-sm">
                                 <i class="fa fa-edit"></i>
                             </a>
-                            <!-- <form action="{{ route('orders.destroy', $order->id_order) }}" method="POST" style="display: inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                            </form> -->
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
+
+   
 @endsection
