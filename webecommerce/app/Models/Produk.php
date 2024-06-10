@@ -26,5 +26,10 @@ class Produk extends Model
 {
     return $this->hasMany(Pesanan::class);
 }
+ // Definisikan relasi favorits di sini
+ public function favorits()
+ {
+     return $this->hasMany(Favorit::class, 'id_produk');
+ }
 
 }

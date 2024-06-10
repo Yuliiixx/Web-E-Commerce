@@ -31,10 +31,17 @@
                             Kategori
                         </a>
                     </li>
+                   
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('produk.index') ? 'active' : '' }}" aria-current="page" href="{{ route('produk.index') }}">
                             <i class="fas fa-box-open"></i>
                             Produk
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('favorits.index') ? 'active' : '' }}" aria-current="page" href="{{ route('favorits.index') }}">
+                            <i class="fas fa-heart"></i>
+                            Favorite
                         </a>
                     </li>
                     <li class="nav-item">
@@ -43,6 +50,13 @@
                             Orderan
                         </a>
                     </li>
+                    <li class="nav-item">
+    <a class="nav-link {{ request()->routeIs('transactions.index') ? 'active' : '' }}" aria-current="page" href="{{ route('transactions.index') }}">
+        <i class="fas fa-wallet"></i> <!-- Menggunakan ikon dompet -->
+        Keuangan
+    </a>
+</li>
+
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('user.index') ? 'active' : '' }}" aria-current="page" href="{{ route('user.index') }}">
                             <i class="fas fa-users"></i>

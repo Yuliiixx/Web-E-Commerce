@@ -3,8 +3,8 @@
 @section('content')
     <div class="container">
         <h2>Orderan Customer</h2>
-        
-          <table class="table">
+
+        <table class="table">
             <thead>
                 <tr>
                     <th>No</th>
@@ -36,6 +36,4 @@
             </tbody>
         </table>
     </div>
-
-   
 @endsection
