@@ -19,7 +19,7 @@
         </div>
         <div class="col-md-4">
             <div class="card text-white bg-info">
-                <div class="card-header">Total Pemasukan dari Transaksi</div>
+                <div class="card-header">Total Pemasukan Lainnya</div>
                 <div class="card-body">
                     <h5 class="card-title">Rp. {{ number_format($totalPemasukanTransactions, 2) }}</h5>
                 </div>

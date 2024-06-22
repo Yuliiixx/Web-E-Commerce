@@ -25,7 +25,7 @@
     <p><strong>Nama:</strong> {{ $order->user->fullname }}</p>
     <p><strong>Alamat:</strong> {{ $order->alamat }}</p>
     <p><strong>Tanggal:</strong> {{ $order->order_date }}</p>
-    <p><strong>Total Belanja:</strong> {{ $order->total_amount }}</p>
+    <p><strong>Total Belanja:</strong> Rp. {{ number_format($order->total_amount, 0, ',', '.') }}</p>
     <!-- <p><strong>Status:</strong> {{ $order->status }}</p> -->
     
     <h3>Order Items</h3>
@@ -43,8 +43,8 @@
                 <tr>
                     <td>{{ $detail->product->nama_produk }}</td>
                     <td>{{ $detail->quantity }}</td>
-                    <td>{{ $detail->price_per_unit }}</td>
-                    <td>{{ $detail->subtotal }}</td>
+                    <td>Rp. {{ number_format($detail->price_per_unit, 0, ',', '.') }}</td>
+                    <td>Rp. {{ number_format($detail->subtotal, 0, ',', '.') }}</td>
                 </tr>
             @endforeach
         </tbody>

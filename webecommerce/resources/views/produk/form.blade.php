@@ -1,24 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-    
-        <div class="row">
-            <div class="col-lg-12">
-                <h2>{{ $title }}</h2>
-            </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>{{ $title }}</h2>
         </div>
+    </div>
 
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-        <div class="form-responsive" style="max-height: 480px; overflow-y: auto; overflow-x: hidden;">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <strong>Whoops!</strong> There were some problems with your input.<br><br>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    <div class="form-responsive" style="max-height: 480px; overflow-y: auto; overflow-x: hidden;">
         <form action="{{ $action }}" method="POST" enctype="multipart/form-data">
             @csrf
             @if ($method === 'PUT')
@@ -54,14 +53,14 @@
                                 <img src="{{ asset('images/' . $produk->gambar) }}" width="100">
                             </div>
                         @endif
-                        <input type="file" name="gambar" class="form-control">
+                        <input type="file" name="gambar" class="form-control" accept="image/*">
                     </div>
                 </div>
 
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Harga:</strong>
-                        <input type="text" name="harga" value="{{ $produk->harga ?? '' }}" class="form-control" placeholder="Harga">
+                        <input type="text" name="harga" value="{{ $produk->harga ?? '' }}" class="form-control" placeholder="Harga" id="harga">
                     </div>
                 </div>
 
@@ -71,7 +70,6 @@
                         <input type="text" name="stock" value="{{ $produk->stock ?? '' }}" class="form-control" placeholder="Stock">
                     </div>
                 </div>
-
 
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
@@ -84,8 +82,8 @@
                     <button type="submit" class="btn btn-pink">{{ $buttonText }}</button>
                 </div>
             </div>
-           
         </form>
-        </div>
     </div>
+
+   
 @endsection

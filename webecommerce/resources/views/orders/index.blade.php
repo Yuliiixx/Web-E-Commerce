@@ -21,7 +21,7 @@
                         <td>{{ $index + 1 }}</td>
                         <td>{{ $order->user->fullname }}</td>
                         <td>{{ $order->order_date }}</td>
-                        <td>{{ $order->total_amount }}</td>
+                        <td>Rp. {{ number_format($order->total_amount, 0, ',', '.') }}</td>
                         <td>{{ $order->status }}</td>
                         <td>
                             <a href="{{ route('orders.show', $order->id_order) }}" class="btn btn-primary btn-sm">

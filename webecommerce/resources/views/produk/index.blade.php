@@ -57,7 +57,7 @@
                         <td>{{ $p->nama_produk }}</td>
                         <td>{{ $p->kategori->nama_kategori }}</td>
                         <td><img src="{{ asset('images/' . $p->gambar) }}" width="100"></td>
-                        <td>{{ $p->harga }}</td>
+                        <td>Rp. {{ number_format($p->harga, 0, ',', '.') }}</td>
                         <td>{{ $p->stock }}</td>
                         <td>{{ $p->keterangan }}</td>
                         <td>

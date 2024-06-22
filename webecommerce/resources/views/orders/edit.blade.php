@@ -20,7 +20,12 @@
 
             <div class="form-group">
                 <label for="total_amount">Total Amount</label>
-                <input type="text" id="total_amount" class="form-control" value="{{ $order->total_amount }}" disabled>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Rp.</span>
+                    </div>
+                    <input type="text" id="formatted_total_amount" class="form-control" value="{{ number_format($order->total_amount, 0, ',', '.') }}" disabled>
+                </div>
             </div>
 
             <div class="form-group">
@@ -35,7 +40,7 @@
 
             <button type="submit" class="btn btn-pink">Update Status</button>
         </form>
-
-        
     </div>
+
+   
 @endsection
